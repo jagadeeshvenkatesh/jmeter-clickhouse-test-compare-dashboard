@@ -1,0 +1,1636 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": 4,
+  "iteration": 1596555618451,
+  "links": [],
+  "panels": [
+    {
+      "collapsed": false,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 26,
+      "panels": [],
+      "title": "Percentile Distribution Comparison",
+      "type": "row"
+    },
+    {
+      "datasource": "ClickHouse",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 7,
+        "x": 0,
+        "y": 1
+      },
+      "id": 10,
+      "options": {
+        "displayMode": "basic",
+        "orientation": "vertical",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": true
+        },
+        "showUnfilled": true
+      },
+      "pluginVersion": "7.0.3",
+      "repeat": "LEFT_SAMPLE",
+      "repeatDirection": "v",
+      "scopedVars": {
+        "LEFT_SAMPLE": {
+          "selected": true,
+          "text": "jp@gc - Dummy Sampler3",
+          "value": "jp@gc - Dummy Sampler3"
+        }
+      },
+      "targets": [
+        {
+          "dateTimeType": "DATETIME",
+          "extrapolate": true,
+          "format": "time_series",
+          "formattedQuery": "SELECT $timeSeries as t, count() FROM $table WHERE $timeFilter GROUP BY t ORDER BY t",
+          "intervalFactor": 1,
+          "query": "SELECT\n   \n    quantile(0.99)(average_time) as \"99\",\n    quantile(0.95)(average_time) as \"95\",\n    quantile(0.90)(average_time) as \"90\",\n     quantile(0.80)(average_time) as \"80\",\n     quantile(0.70)(average_time) as \"70\",\n      quantile(0.60)(average_time) as \"60\",\n       quantile(0.50)(average_time) as \"50\",\n        quantile(0.40)(average_time) as \"40\",\n         quantile(0.30)(average_time) as \"30\",\n          quantile(0.20)(average_time) as \"20\",\n           quantile(0.10)(average_time) as \"10\"\nFROM jmresults_statistic js\nWHERE\n    profile_name = '$LEFT_PROFILE'\n    and run_id = '$LEFT_RUN' and res_code='200' and sample_label in ($LEFT_SAMPLE) \nGROUP BY\n    \n    sample_label\nORDER BY\n    \n    sample_label",
+          "rawQuery": "SELECT         quantile(0.99)(average_time) as \"99\",     quantile(0.95)(average_time) as \"95\",     quantile(0.90)(average_time) as \"90\",      quantile(0.80)(average_time) as \"80\",      quantile(0.70)(average_time) as \"70\",       quantile(0.60)(average_time) as \"60\",        quantile(0.50)(average_time) as \"50\",         quantile(0.40)(average_time) as \"40\",          quantile(0.30)(average_time) as \"30\",           quantile(0.20)(average_time) as \"20\",            quantile(0.10)(average_time) as \"10\" FROM jmresults_statistic js WHERE     profile_name = 'TEST3'     and run_id = 'Run8' and res_code='200' and sample_label in ('jp@gc - Dummy Sampler3')  GROUP BY          sample_label ORDER BY          sample_label",
+          "refId": "A",
+          "round": "0s"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Percentil Graf Left Run $LEFT_SAMPLE",
+      "transformations": [],
+      "type": "bargauge"
+    },
+    {
+      "datasource": "ClickHouse",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 7,
+        "x": 7,
+        "y": 1
+      },
+      "id": 12,
+      "options": {
+        "displayMode": "basic",
+        "orientation": "vertical",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": true
+        },
+        "showUnfilled": true
+      },
+      "pluginVersion": "7.0.3",
+      "repeat": "LEFT_SAMPLE",
+      "repeatDirection": "v",
+      "scopedVars": {
+        "LEFT_SAMPLE": {
+          "selected": true,
+          "text": "jp@gc - Dummy Sampler3",
+          "value": "jp@gc - Dummy Sampler3"
+        }
+      },
+      "targets": [
+        {
+          "dateTimeType": "DATETIME",
+          "extrapolate": true,
+          "format": "time_series",
+          "formattedQuery": "SELECT $timeSeries as t, count() FROM $table WHERE $timeFilter GROUP BY t ORDER BY t",
+          "intervalFactor": 1,
+          "query": "SELECT\n    quantile(0.99)(average_time) as \"99\",\n    quantile(0.95)(average_time) as \"95\",\n    quantile(0.90)(average_time) as \"90\",\n     quantile(0.80)(average_time) as \"80\",\n     quantile(0.70)(average_time) as \"70\",\n      quantile(0.60)(average_time) as \"60\",\n       quantile(0.50)(average_time) as \"50\",\n        quantile(0.40)(average_time) as \"40\",\n         quantile(0.30)(average_time) as \"30\",\n          quantile(0.20)(average_time) as \"20\",\n           quantile(0.10)(average_time) as \"10\"\nFROM jmresults_statistic js\nWHERE\n    profile_name = '$RIGHT_PROFILE'\n    and run_id = '$RIGHT_RUN' and res_code='200' and sample_label  in ($LEFT_SAMPLE)\nGROUP BY\n    \n    sample_label\nORDER BY\n    \n    sample_label",
+          "rawQuery": "SELECT     quantile(0.99)(average_time) as \"99\",     quantile(0.95)(average_time) as \"95\",     quantile(0.90)(average_time) as \"90\",      quantile(0.80)(average_time) as \"80\",      quantile(0.70)(average_time) as \"70\",       quantile(0.60)(average_time) as \"60\",        quantile(0.50)(average_time) as \"50\",         quantile(0.40)(average_time) as \"40\",          quantile(0.30)(average_time) as \"30\",           quantile(0.20)(average_time) as \"20\",            quantile(0.10)(average_time) as \"10\" FROM jmresults_statistic js WHERE     profile_name = 'TEST3'     and run_id = 'Run9' and res_code='200' and sample_label  in ('jp@gc - Dummy Sampler3') GROUP BY          sample_label ORDER BY          sample_label",
+          "refId": "A",
+          "round": "0s"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Percentile Graf $LEFT_SAMPLE",
+      "transformations": [],
+      "type": "bargauge"
+    },
+    {
+      "datasource": "ClickHouse",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 500
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 10,
+        "x": 14,
+        "y": 1
+      },
+      "id": 11,
+      "options": {
+        "displayMode": "basic",
+        "orientation": "vertical",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": true
+        },
+        "showUnfilled": true
+      },
+      "pluginVersion": "7.0.3",
+      "repeat": "LEFT_SAMPLE",
+      "repeatDirection": "v",
+      "scopedVars": {
+        "LEFT_SAMPLE": {
+          "selected": true,
+          "text": "jp@gc - Dummy Sampler3",
+          "value": "jp@gc - Dummy Sampler3"
+        }
+      },
+      "targets": [
+        {
+          "dateTimeType": "DATETIME",
+          "extrapolate": true,
+          "format": "time_series",
+          "formattedQuery": "SELECT $timeSeries as t, count() FROM $table WHERE $timeFilter GROUP BY t ORDER BY t",
+          "hide": true,
+          "intervalFactor": 1,
+          "query": "SELECT\n   \n    quantile(0.99)(average_time) as \"99perc\",\n    quantile(0.95)(average_time) as \"95perc\",\n    quantile(0.90)(average_time) as \"90perc\",\n     quantile(0.80)(average_time) as \"80perc\",\n     quantile(0.70)(average_time) as \"70perc\",\n      quantile(0.60)(average_time) as \"60perc\",\n       quantile(0.50)(average_time) as \"50perc\",\n        quantile(0.40)(average_time) as \"40perc\",\n         quantile(0.30)(average_time) as \"30perc\",\n          quantile(0.20)(average_time) as \"20perc\",\n           quantile(0.10)(average_time) as \"10perc\"\nFROM jmresults_statistic js\nWHERE\n    profile_name = '$RIGHT_PROFILE'\n    and run_id = '$RIGHT_RUN' and sample_label in ($LEFT_SAMPLE) and res_code='200'\nGROUP BY\n    \n    sample_label\nORDER BY\n    \n    sample_label",
+          "rawQuery": true,
+          "refId": "A",
+          "round": "0s"
+        },
+        {
+          "dateTimeType": "DATETIME",
+          "extrapolate": true,
+          "format": "time_series",
+          "formattedQuery": "SELECT $timeSeries as t, count() FROM $table WHERE $timeFilter GROUP BY t ORDER BY t",
+          "hide": false,
+          "intervalFactor": 1,
+          "query": "SELECT\r\n    quantile(0.99)(js.average_time) as \"99\",\r\n    quantile(0.95)(js.average_time) as \"95\",\r\n    quantile(0.90)(js.average_time) as \"90\",\r\n     quantile(0.80)(js.average_time) as \"80\",\r\n     quantile(0.70)(js.average_time) as \"70\",\r\n      quantile(0.60)(js.average_time) as \"60\",\r\n       quantile(0.50)(js.average_time) as \"50\",\r\n        quantile(0.40)(js.average_time) as \"40\",\r\n         quantile(0.30)(js.average_time) as \"30\",\r\n          quantile(0.20)(js.average_time) as \"20\",\r\n           quantile(0.10)(js.average_time) as \"10\"\r\nFROM jmresults_statistic js\r\nWHERE\r\n    js.profile_name = '$LEFT_PROFILE'\r\n    and js.run_id = '$LEFT_RUN' and js.sample_label  in ($LEFT_SAMPLE)\r\nGROUP BY\r\n    sample_label\r\nORDER BY\r\n    sample_label\r\n    union all\r\nSELECT\r\n    quantile(0.99)(js.average_time) as \"99\",\r\n    quantile(0.95)(js.average_time) as \"95\",\r\n    quantile(0.90)(js.average_time) as \"90\",\r\n     quantile(0.80)(js.average_time) as \"80\",\r\n     quantile(0.70)(js.average_time) as \"70\",\r\n      quantile(0.60)(js.average_time) as \"60\",\r\n       quantile(0.50)(js.average_time) as \"50\",\r\n        quantile(0.40)(js.average_time) as \"40\",\r\n         quantile(0.30)(js.average_time) as \"30\",\r\n          quantile(0.20)(js.average_time) as \"20\",\r\n           quantile(0.10)(js.average_time) as \"10\"\r\nFROM jmresults_statistic js\r\nWHERE\r\n    js.profile_name = '$RIGHT_PROFILE'\r\n    and js.run_id = '$RIGHT_RUN' and js.sample_label  in ($LEFT_SAMPLE)\r\nGROUP BY\r\n    sample_label\r\nORDER BY\r\n    sample_label",
+          "rawQuery": "SELECT     quantile(0.99)(js.average_time) as \"99\",     quantile(0.95)(js.average_time) as \"95\",     quantile(0.90)(js.average_time) as \"90\",      quantile(0.80)(js.average_time) as \"80\",      quantile(0.70)(js.average_time) as \"70\",       quantile(0.60)(js.average_time) as \"60\",        quantile(0.50)(js.average_time) as \"50\",         quantile(0.40)(js.average_time) as \"40\",          quantile(0.30)(js.average_time) as \"30\",           quantile(0.20)(js.average_time) as \"20\",            quantile(0.10)(js.average_time) as \"10\" FROM jmresults_statistic js WHERE     js.profile_name = 'TEST3'     and js.run_id = 'Run8' and js.sample_label  in ('jp@gc - Dummy Sampler3') GROUP BY     sample_label ORDER BY     sample_label     union all SELECT     quantile(0.99)(js.average_time) as \"99\",     quantile(0.95)(js.average_time) as \"95\",     quantile(0.90)(js.average_time) as \"90\",      quantile(0.80)(js.average_time) as \"80\",      quantile(0.70)(js.average_time) as \"70\",       quantile(0.60)(js.average_time) as \"60\",        quantile(0.50)(js.average_time) as \"50\",         quantile(0.40)(js.average_time) as \"40\",          quantile(0.30)(js.average_time) as \"30\",           quantile(0.20)(js.average_time) as \"20\",            quantile(0.10)(js.average_time) as \"10\" FROM jmresults_statistic js WHERE     js.profile_name = 'TEST3'     and js.run_id = 'Run9' and js.sample_label  in ('jp@gc - Dummy Sampler3') GROUP BY     sample_label ORDER BY     sample_label",
+          "refId": "B",
+          "round": "0s"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Percentile Diff $LEFT_SAMPLE",
+      "transformations": [],
+      "type": "bargauge"
+    },
+    {
+      "datasource": "ClickHouse",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 7,
+        "x": 0,
+        "y": 9
+      },
+      "id": 27,
+      "options": {
+        "displayMode": "basic",
+        "orientation": "vertical",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": true
+        },
+        "showUnfilled": true
+      },
+      "pluginVersion": "7.0.3",
+      "repeat": null,
+      "repeatDirection": "v",
+      "repeatIteration": 1596555618451,
+      "repeatPanelId": 10,
+      "scopedVars": {
+        "LEFT_SAMPLE": {
+          "selected": true,
+          "text": "jp@gc - Dummy Sampler4",
+          "value": "jp@gc - Dummy Sampler4"
+        }
+      },
+      "targets": [
+        {
+          "dateTimeType": "DATETIME",
+          "extrapolate": true,
+          "format": "time_series",
+          "formattedQuery": "SELECT $timeSeries as t, count() FROM $table WHERE $timeFilter GROUP BY t ORDER BY t",
+          "intervalFactor": 1,
+          "query": "SELECT\n   \n    quantile(0.99)(average_time) as \"99\",\n    quantile(0.95)(average_time) as \"95\",\n    quantile(0.90)(average_time) as \"90\",\n     quantile(0.80)(average_time) as \"80\",\n     quantile(0.70)(average_time) as \"70\",\n      quantile(0.60)(average_time) as \"60\",\n       quantile(0.50)(average_time) as \"50\",\n        quantile(0.40)(average_time) as \"40\",\n         quantile(0.30)(average_time) as \"30\",\n          quantile(0.20)(average_time) as \"20\",\n           quantile(0.10)(average_time) as \"10\"\nFROM jmresults_statistic js\nWHERE\n    profile_name = '$LEFT_PROFILE'\n    and run_id = '$LEFT_RUN' and res_code='200' and sample_label in ($LEFT_SAMPLE) \nGROUP BY\n    \n    sample_label\nORDER BY\n    \n    sample_label",
+          "rawQuery": "SELECT         quantile(0.99)(average_time) as \"99\",     quantile(0.95)(average_time) as \"95\",     quantile(0.90)(average_time) as \"90\",      quantile(0.80)(average_time) as \"80\",      quantile(0.70)(average_time) as \"70\",       quantile(0.60)(average_time) as \"60\",        quantile(0.50)(average_time) as \"50\",         quantile(0.40)(average_time) as \"40\",          quantile(0.30)(average_time) as \"30\",           quantile(0.20)(average_time) as \"20\",            quantile(0.10)(average_time) as \"10\" FROM jmresults_statistic js WHERE     profile_name = 'TEST3'     and run_id = 'Run8' and res_code='200' and sample_label in ('jp@gc - Dummy Sampler3')  GROUP BY          sample_label ORDER BY          sample_label",
+          "refId": "A",
+          "round": "0s"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Percentil Graf Left Run $LEFT_SAMPLE",
+      "transformations": [],
+      "type": "bargauge"
+    },
+    {
+      "datasource": "ClickHouse",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 7,
+        "x": 7,
+        "y": 9
+      },
+      "id": 29,
+      "options": {
+        "displayMode": "basic",
+        "orientation": "vertical",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": true
+        },
+        "showUnfilled": true
+      },
+      "pluginVersion": "7.0.3",
+      "repeat": null,
+      "repeatDirection": "v",
+      "repeatIteration": 1596555618451,
+      "repeatPanelId": 12,
+      "scopedVars": {
+        "LEFT_SAMPLE": {
+          "selected": true,
+          "text": "jp@gc - Dummy Sampler4",
+          "value": "jp@gc - Dummy Sampler4"
+        }
+      },
+      "targets": [
+        {
+          "dateTimeType": "DATETIME",
+          "extrapolate": true,
+          "format": "time_series",
+          "formattedQuery": "SELECT $timeSeries as t, count() FROM $table WHERE $timeFilter GROUP BY t ORDER BY t",
+          "intervalFactor": 1,
+          "query": "SELECT\n    quantile(0.99)(average_time) as \"99\",\n    quantile(0.95)(average_time) as \"95\",\n    quantile(0.90)(average_time) as \"90\",\n     quantile(0.80)(average_time) as \"80\",\n     quantile(0.70)(average_time) as \"70\",\n      quantile(0.60)(average_time) as \"60\",\n       quantile(0.50)(average_time) as \"50\",\n        quantile(0.40)(average_time) as \"40\",\n         quantile(0.30)(average_time) as \"30\",\n          quantile(0.20)(average_time) as \"20\",\n           quantile(0.10)(average_time) as \"10\"\nFROM jmresults_statistic js\nWHERE\n    profile_name = '$RIGHT_PROFILE'\n    and run_id = '$RIGHT_RUN' and res_code='200' and sample_label  in ($LEFT_SAMPLE)\nGROUP BY\n    \n    sample_label\nORDER BY\n    \n    sample_label",
+          "rawQuery": "SELECT     quantile(0.99)(average_time) as \"99\",     quantile(0.95)(average_time) as \"95\",     quantile(0.90)(average_time) as \"90\",      quantile(0.80)(average_time) as \"80\",      quantile(0.70)(average_time) as \"70\",       quantile(0.60)(average_time) as \"60\",        quantile(0.50)(average_time) as \"50\",         quantile(0.40)(average_time) as \"40\",          quantile(0.30)(average_time) as \"30\",           quantile(0.20)(average_time) as \"20\",            quantile(0.10)(average_time) as \"10\" FROM jmresults_statistic js WHERE     profile_name = 'TEST3'     and run_id = 'Run9' and res_code='200' and sample_label  in ('jp@gc - Dummy Sampler3') GROUP BY          sample_label ORDER BY          sample_label",
+          "refId": "A",
+          "round": "0s"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Percentile Graf $LEFT_SAMPLE",
+      "transformations": [],
+      "type": "bargauge"
+    },
+    {
+      "datasource": "ClickHouse",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 500
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 10,
+        "x": 14,
+        "y": 9
+      },
+      "id": 31,
+      "options": {
+        "displayMode": "basic",
+        "orientation": "vertical",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": true
+        },
+        "showUnfilled": true
+      },
+      "pluginVersion": "7.0.3",
+      "repeat": null,
+      "repeatDirection": "v",
+      "repeatIteration": 1596555618451,
+      "repeatPanelId": 11,
+      "scopedVars": {
+        "LEFT_SAMPLE": {
+          "selected": true,
+          "text": "jp@gc - Dummy Sampler4",
+          "value": "jp@gc - Dummy Sampler4"
+        }
+      },
+      "targets": [
+        {
+          "dateTimeType": "DATETIME",
+          "extrapolate": true,
+          "format": "time_series",
+          "formattedQuery": "SELECT $timeSeries as t, count() FROM $table WHERE $timeFilter GROUP BY t ORDER BY t",
+          "hide": true,
+          "intervalFactor": 1,
+          "query": "SELECT\n   \n    quantile(0.99)(average_time) as \"99perc\",\n    quantile(0.95)(average_time) as \"95perc\",\n    quantile(0.90)(average_time) as \"90perc\",\n     quantile(0.80)(average_time) as \"80perc\",\n     quantile(0.70)(average_time) as \"70perc\",\n      quantile(0.60)(average_time) as \"60perc\",\n       quantile(0.50)(average_time) as \"50perc\",\n        quantile(0.40)(average_time) as \"40perc\",\n         quantile(0.30)(average_time) as \"30perc\",\n          quantile(0.20)(average_time) as \"20perc\",\n           quantile(0.10)(average_time) as \"10perc\"\nFROM jmresults_statistic js\nWHERE\n    profile_name = '$RIGHT_PROFILE'\n    and run_id = '$RIGHT_RUN' and sample_label in ($LEFT_SAMPLE) and res_code='200'\nGROUP BY\n    \n    sample_label\nORDER BY\n    \n    sample_label",
+          "rawQuery": true,
+          "refId": "A",
+          "round": "0s"
+        },
+        {
+          "dateTimeType": "DATETIME",
+          "extrapolate": true,
+          "format": "time_series",
+          "formattedQuery": "SELECT $timeSeries as t, count() FROM $table WHERE $timeFilter GROUP BY t ORDER BY t",
+          "hide": false,
+          "intervalFactor": 1,
+          "query": "SELECT\r\n    quantile(0.99)(js.average_time) as \"99\",\r\n    quantile(0.95)(js.average_time) as \"95\",\r\n    quantile(0.90)(js.average_time) as \"90\",\r\n     quantile(0.80)(js.average_time) as \"80\",\r\n     quantile(0.70)(js.average_time) as \"70\",\r\n      quantile(0.60)(js.average_time) as \"60\",\r\n       quantile(0.50)(js.average_time) as \"50\",\r\n        quantile(0.40)(js.average_time) as \"40\",\r\n         quantile(0.30)(js.average_time) as \"30\",\r\n          quantile(0.20)(js.average_time) as \"20\",\r\n           quantile(0.10)(js.average_time) as \"10\"\r\nFROM jmresults_statistic js\r\nWHERE\r\n    js.profile_name = '$LEFT_PROFILE'\r\n    and js.run_id = '$LEFT_RUN' and js.sample_label  in ($LEFT_SAMPLE)\r\nGROUP BY\r\n    sample_label\r\nORDER BY\r\n    sample_label\r\n    union all\r\nSELECT\r\n    quantile(0.99)(js.average_time) as \"99\",\r\n    quantile(0.95)(js.average_time) as \"95\",\r\n    quantile(0.90)(js.average_time) as \"90\",\r\n     quantile(0.80)(js.average_time) as \"80\",\r\n     quantile(0.70)(js.average_time) as \"70\",\r\n      quantile(0.60)(js.average_time) as \"60\",\r\n       quantile(0.50)(js.average_time) as \"50\",\r\n        quantile(0.40)(js.average_time) as \"40\",\r\n         quantile(0.30)(js.average_time) as \"30\",\r\n          quantile(0.20)(js.average_time) as \"20\",\r\n           quantile(0.10)(js.average_time) as \"10\"\r\nFROM jmresults_statistic js\r\nWHERE\r\n    js.profile_name = '$RIGHT_PROFILE'\r\n    and js.run_id = '$RIGHT_RUN' and js.sample_label  in ($LEFT_SAMPLE)\r\nGROUP BY\r\n    sample_label\r\nORDER BY\r\n    sample_label",
+          "rawQuery": "SELECT     quantile(0.99)(js.average_time) as \"99\",     quantile(0.95)(js.average_time) as \"95\",     quantile(0.90)(js.average_time) as \"90\",      quantile(0.80)(js.average_time) as \"80\",      quantile(0.70)(js.average_time) as \"70\",       quantile(0.60)(js.average_time) as \"60\",        quantile(0.50)(js.average_time) as \"50\",         quantile(0.40)(js.average_time) as \"40\",          quantile(0.30)(js.average_time) as \"30\",           quantile(0.20)(js.average_time) as \"20\",            quantile(0.10)(js.average_time) as \"10\" FROM jmresults_statistic js WHERE     js.profile_name = 'TEST3'     and js.run_id = 'Run8' and js.sample_label  in ('jp@gc - Dummy Sampler3') GROUP BY     sample_label ORDER BY     sample_label     union all SELECT     quantile(0.99)(js.average_time) as \"99\",     quantile(0.95)(js.average_time) as \"95\",     quantile(0.90)(js.average_time) as \"90\",      quantile(0.80)(js.average_time) as \"80\",      quantile(0.70)(js.average_time) as \"70\",       quantile(0.60)(js.average_time) as \"60\",        quantile(0.50)(js.average_time) as \"50\",         quantile(0.40)(js.average_time) as \"40\",          quantile(0.30)(js.average_time) as \"30\",           quantile(0.20)(js.average_time) as \"20\",            quantile(0.10)(js.average_time) as \"10\" FROM jmresults_statistic js WHERE     js.profile_name = 'TEST3'     and js.run_id = 'Run9' and js.sample_label  in ('jp@gc - Dummy Sampler3') GROUP BY     sample_label ORDER BY     sample_label",
+          "refId": "B",
+          "round": "0s"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Percentile Diff $LEFT_SAMPLE",
+      "transformations": [],
+      "type": "bargauge"
+    },
+    {
+      "datasource": "ClickHouse",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 7,
+        "x": 0,
+        "y": 17
+      },
+      "id": 28,
+      "options": {
+        "displayMode": "basic",
+        "orientation": "vertical",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": true
+        },
+        "showUnfilled": true
+      },
+      "pluginVersion": "7.0.3",
+      "repeat": null,
+      "repeatDirection": "v",
+      "repeatIteration": 1596555618451,
+      "repeatPanelId": 10,
+      "scopedVars": {
+        "LEFT_SAMPLE": {
+          "selected": true,
+          "text": "jp@gc - Dummy Sampler5",
+          "value": "jp@gc - Dummy Sampler5"
+        }
+      },
+      "targets": [
+        {
+          "dateTimeType": "DATETIME",
+          "extrapolate": true,
+          "format": "time_series",
+          "formattedQuery": "SELECT $timeSeries as t, count() FROM $table WHERE $timeFilter GROUP BY t ORDER BY t",
+          "intervalFactor": 1,
+          "query": "SELECT\n   \n    quantile(0.99)(average_time) as \"99\",\n    quantile(0.95)(average_time) as \"95\",\n    quantile(0.90)(average_time) as \"90\",\n     quantile(0.80)(average_time) as \"80\",\n     quantile(0.70)(average_time) as \"70\",\n      quantile(0.60)(average_time) as \"60\",\n       quantile(0.50)(average_time) as \"50\",\n        quantile(0.40)(average_time) as \"40\",\n         quantile(0.30)(average_time) as \"30\",\n          quantile(0.20)(average_time) as \"20\",\n           quantile(0.10)(average_time) as \"10\"\nFROM jmresults_statistic js\nWHERE\n    profile_name = '$LEFT_PROFILE'\n    and run_id = '$LEFT_RUN' and res_code='200' and sample_label in ($LEFT_SAMPLE) \nGROUP BY\n    \n    sample_label\nORDER BY\n    \n    sample_label",
+          "rawQuery": "SELECT         quantile(0.99)(average_time) as \"99\",     quantile(0.95)(average_time) as \"95\",     quantile(0.90)(average_time) as \"90\",      quantile(0.80)(average_time) as \"80\",      quantile(0.70)(average_time) as \"70\",       quantile(0.60)(average_time) as \"60\",        quantile(0.50)(average_time) as \"50\",         quantile(0.40)(average_time) as \"40\",          quantile(0.30)(average_time) as \"30\",           quantile(0.20)(average_time) as \"20\",            quantile(0.10)(average_time) as \"10\" FROM jmresults_statistic js WHERE     profile_name = 'TEST3'     and run_id = 'Run8' and res_code='200' and sample_label in ('jp@gc - Dummy Sampler3')  GROUP BY          sample_label ORDER BY          sample_label",
+          "refId": "A",
+          "round": "0s"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Percentil Graf Left Run $LEFT_SAMPLE",
+      "transformations": [],
+      "type": "bargauge"
+    },
+    {
+      "datasource": "ClickHouse",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 7,
+        "x": 7,
+        "y": 17
+      },
+      "id": 30,
+      "options": {
+        "displayMode": "basic",
+        "orientation": "vertical",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": true
+        },
+        "showUnfilled": true
+      },
+      "pluginVersion": "7.0.3",
+      "repeat": null,
+      "repeatDirection": "v",
+      "repeatIteration": 1596555618451,
+      "repeatPanelId": 12,
+      "scopedVars": {
+        "LEFT_SAMPLE": {
+          "selected": true,
+          "text": "jp@gc - Dummy Sampler5",
+          "value": "jp@gc - Dummy Sampler5"
+        }
+      },
+      "targets": [
+        {
+          "dateTimeType": "DATETIME",
+          "extrapolate": true,
+          "format": "time_series",
+          "formattedQuery": "SELECT $timeSeries as t, count() FROM $table WHERE $timeFilter GROUP BY t ORDER BY t",
+          "intervalFactor": 1,
+          "query": "SELECT\n    quantile(0.99)(average_time) as \"99\",\n    quantile(0.95)(average_time) as \"95\",\n    quantile(0.90)(average_time) as \"90\",\n     quantile(0.80)(average_time) as \"80\",\n     quantile(0.70)(average_time) as \"70\",\n      quantile(0.60)(average_time) as \"60\",\n       quantile(0.50)(average_time) as \"50\",\n        quantile(0.40)(average_time) as \"40\",\n         quantile(0.30)(average_time) as \"30\",\n          quantile(0.20)(average_time) as \"20\",\n           quantile(0.10)(average_time) as \"10\"\nFROM jmresults_statistic js\nWHERE\n    profile_name = '$RIGHT_PROFILE'\n    and run_id = '$RIGHT_RUN' and res_code='200' and sample_label  in ($LEFT_SAMPLE)\nGROUP BY\n    \n    sample_label\nORDER BY\n    \n    sample_label",
+          "rawQuery": "SELECT     quantile(0.99)(average_time) as \"99\",     quantile(0.95)(average_time) as \"95\",     quantile(0.90)(average_time) as \"90\",      quantile(0.80)(average_time) as \"80\",      quantile(0.70)(average_time) as \"70\",       quantile(0.60)(average_time) as \"60\",        quantile(0.50)(average_time) as \"50\",         quantile(0.40)(average_time) as \"40\",          quantile(0.30)(average_time) as \"30\",           quantile(0.20)(average_time) as \"20\",            quantile(0.10)(average_time) as \"10\" FROM jmresults_statistic js WHERE     profile_name = 'TEST3'     and run_id = 'Run9' and res_code='200' and sample_label  in ('jp@gc - Dummy Sampler3') GROUP BY          sample_label ORDER BY          sample_label",
+          "refId": "A",
+          "round": "0s"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Percentile Graf $LEFT_SAMPLE",
+      "transformations": [],
+      "type": "bargauge"
+    },
+    {
+      "datasource": "ClickHouse",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 500
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 10,
+        "x": 14,
+        "y": 17
+      },
+      "id": 32,
+      "options": {
+        "displayMode": "basic",
+        "orientation": "vertical",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": true
+        },
+        "showUnfilled": true
+      },
+      "pluginVersion": "7.0.3",
+      "repeat": null,
+      "repeatDirection": "v",
+      "repeatIteration": 1596555618451,
+      "repeatPanelId": 11,
+      "scopedVars": {
+        "LEFT_SAMPLE": {
+          "selected": true,
+          "text": "jp@gc - Dummy Sampler5",
+          "value": "jp@gc - Dummy Sampler5"
+        }
+      },
+      "targets": [
+        {
+          "dateTimeType": "DATETIME",
+          "extrapolate": true,
+          "format": "time_series",
+          "formattedQuery": "SELECT $timeSeries as t, count() FROM $table WHERE $timeFilter GROUP BY t ORDER BY t",
+          "hide": true,
+          "intervalFactor": 1,
+          "query": "SELECT\n   \n    quantile(0.99)(average_time) as \"99perc\",\n    quantile(0.95)(average_time) as \"95perc\",\n    quantile(0.90)(average_time) as \"90perc\",\n     quantile(0.80)(average_time) as \"80perc\",\n     quantile(0.70)(average_time) as \"70perc\",\n      quantile(0.60)(average_time) as \"60perc\",\n       quantile(0.50)(average_time) as \"50perc\",\n        quantile(0.40)(average_time) as \"40perc\",\n         quantile(0.30)(average_time) as \"30perc\",\n          quantile(0.20)(average_time) as \"20perc\",\n           quantile(0.10)(average_time) as \"10perc\"\nFROM jmresults_statistic js\nWHERE\n    profile_name = '$RIGHT_PROFILE'\n    and run_id = '$RIGHT_RUN' and sample_label in ($LEFT_SAMPLE) and res_code='200'\nGROUP BY\n    \n    sample_label\nORDER BY\n    \n    sample_label",
+          "rawQuery": true,
+          "refId": "A",
+          "round": "0s"
+        },
+        {
+          "dateTimeType": "DATETIME",
+          "extrapolate": true,
+          "format": "time_series",
+          "formattedQuery": "SELECT $timeSeries as t, count() FROM $table WHERE $timeFilter GROUP BY t ORDER BY t",
+          "hide": false,
+          "intervalFactor": 1,
+          "query": "SELECT\r\n    quantile(0.99)(js.average_time) as \"99\",\r\n    quantile(0.95)(js.average_time) as \"95\",\r\n    quantile(0.90)(js.average_time) as \"90\",\r\n     quantile(0.80)(js.average_time) as \"80\",\r\n     quantile(0.70)(js.average_time) as \"70\",\r\n      quantile(0.60)(js.average_time) as \"60\",\r\n       quantile(0.50)(js.average_time) as \"50\",\r\n        quantile(0.40)(js.average_time) as \"40\",\r\n         quantile(0.30)(js.average_time) as \"30\",\r\n          quantile(0.20)(js.average_time) as \"20\",\r\n           quantile(0.10)(js.average_time) as \"10\"\r\nFROM jmresults_statistic js\r\nWHERE\r\n    js.profile_name = '$LEFT_PROFILE'\r\n    and js.run_id = '$LEFT_RUN' and js.sample_label  in ($LEFT_SAMPLE)\r\nGROUP BY\r\n    sample_label\r\nORDER BY\r\n    sample_label\r\n    union all\r\nSELECT\r\n    quantile(0.99)(js.average_time) as \"99\",\r\n    quantile(0.95)(js.average_time) as \"95\",\r\n    quantile(0.90)(js.average_time) as \"90\",\r\n     quantile(0.80)(js.average_time) as \"80\",\r\n     quantile(0.70)(js.average_time) as \"70\",\r\n      quantile(0.60)(js.average_time) as \"60\",\r\n       quantile(0.50)(js.average_time) as \"50\",\r\n        quantile(0.40)(js.average_time) as \"40\",\r\n         quantile(0.30)(js.average_time) as \"30\",\r\n          quantile(0.20)(js.average_time) as \"20\",\r\n           quantile(0.10)(js.average_time) as \"10\"\r\nFROM jmresults_statistic js\r\nWHERE\r\n    js.profile_name = '$RIGHT_PROFILE'\r\n    and js.run_id = '$RIGHT_RUN' and js.sample_label  in ($LEFT_SAMPLE)\r\nGROUP BY\r\n    sample_label\r\nORDER BY\r\n    sample_label",
+          "rawQuery": "SELECT     quantile(0.99)(js.average_time) as \"99\",     quantile(0.95)(js.average_time) as \"95\",     quantile(0.90)(js.average_time) as \"90\",      quantile(0.80)(js.average_time) as \"80\",      quantile(0.70)(js.average_time) as \"70\",       quantile(0.60)(js.average_time) as \"60\",        quantile(0.50)(js.average_time) as \"50\",         quantile(0.40)(js.average_time) as \"40\",          quantile(0.30)(js.average_time) as \"30\",           quantile(0.20)(js.average_time) as \"20\",            quantile(0.10)(js.average_time) as \"10\" FROM jmresults_statistic js WHERE     js.profile_name = 'TEST3'     and js.run_id = 'Run8' and js.sample_label  in ('jp@gc - Dummy Sampler3') GROUP BY     sample_label ORDER BY     sample_label     union all SELECT     quantile(0.99)(js.average_time) as \"99\",     quantile(0.95)(js.average_time) as \"95\",     quantile(0.90)(js.average_time) as \"90\",      quantile(0.80)(js.average_time) as \"80\",      quantile(0.70)(js.average_time) as \"70\",       quantile(0.60)(js.average_time) as \"60\",        quantile(0.50)(js.average_time) as \"50\",         quantile(0.40)(js.average_time) as \"40\",          quantile(0.30)(js.average_time) as \"30\",           quantile(0.20)(js.average_time) as \"20\",            quantile(0.10)(js.average_time) as \"10\" FROM jmresults_statistic js WHERE     js.profile_name = 'TEST3'     and js.run_id = 'Run9' and js.sample_label  in ('jp@gc - Dummy Sampler3') GROUP BY     sample_label ORDER BY     sample_label",
+          "refId": "B",
+          "round": "0s"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Percentile Diff $LEFT_SAMPLE",
+      "transformations": [],
+      "type": "bargauge"
+    },
+    {
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 25
+      },
+      "id": 8,
+      "title": "Row title",
+      "type": "row"
+    },
+    {
+      "aliasColors": {
+        "95 perc": "#F9934E",
+        "99 perc": "#E24D42",
+        "Max": "#BF1B00"
+      },
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "ClickHouse",
+      "editable": true,
+      "error": false,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 3,
+      "fillGradient": 0,
+      "grid": {},
+      "gridPos": {
+        "h": 13,
+        "w": 24,
+        "x": 0,
+        "y": 26
+      },
+      "height": "300",
+      "hiddenSeries": false,
+      "id": 6,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": false,
+        "hideEmpty": true,
+        "hideZero": true,
+        "max": true,
+        "min": true,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null as zero",
+      "options": {
+        "dataLinks": []
+      },
+      "paceLength": 10,
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "Mean",
+          "zindex": 3
+        },
+        {
+          "alias": "90 perc",
+          "zindex": 2
+        },
+        {
+          "alias": "95 perc",
+          "zindex": 1
+        },
+        {
+          "alias": "99 perc",
+          "zindex": 0
+        },
+        {
+          "alias": "Max",
+          "zindex": -1
+        },
+        {}
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "90 perc",
+          "database": "default",
+          "dateLoading": false,
+          "dateTimeColDataType": "timestamp_sec",
+          "dateTimeType": "DATETIME",
+          "datetimeLoading": false,
+          "dsType": "influxdb",
+          "extrapolate": true,
+          "format": "time_series",
+          "formattedQuery": "SELECT percentile(\"responseTime\", 90) FROM \"requestsRaw\" WHERE  \"testName\" =~ /^$profile$/ AND \"runId\" =~ /^$runid$/ AND \"requestName\" =~ /^$request$/ AND $timeFilter GROUP BY time([[aggregation]]s) fill(null)",
+          "groupBy": [
+            {
+              "params": [
+                "$aggregation"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "measurement": "requestsRaw",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "WITH\n    (select min(timestamp_sec) from jmresults_statistic where profile_name = '$LEFT_PROFILE' and run_id = '$LEFT_RUN') as left_test,\n    (select min(timestamp_sec) from jmresults_statistic where profile_name = '$RIGHT_PROFILE' and run_id = '$RIGHT_RUN') as right_test\n    SELECT (intDiv(toUInt32(timestamp_sec-(right_test - left_test)), $agr) * $agr) * 1000  as t,\n    quantile(0.95)(average_time) as \"97perc\",\n    sample_label|| '_RIGHT'  as \"sample_label\"\nFROM jmresults_statistic js\nWHERE\n    profile_name = '$RIGHT_PROFILE'\n    and run_id = '$RIGHT_RUN' and res_code='200'\nGROUP BY\n    t,\n    sample_label\nORDER BY \n    t,sample_label\n    ",
+          "rawQuery": "WITH     (select min(timestamp_sec) from jmresults_statistic where profile_name = 'TEST3' and run_id = 'Run8') as left_test,     (select min(timestamp_sec) from jmresults_statistic where profile_name = 'TEST3' and run_id = 'Run9') as right_test     SELECT (intDiv(toUInt32(timestamp_sec-(right_test - left_test)), 10) * 10) * 1000  as t,     quantile(0.95)(average_time) as \"97perc\",     sample_label|| '_RIGHT'  as \"sample_label\" FROM jmresults_statistic js WHERE     profile_name = 'TEST3'     and run_id = 'Run9' and res_code='200' GROUP BY     t,     sample_label ORDER BY      t,sample_label",
+          "refId": "B",
+          "resultFormat": "time_series",
+          "round": "0s",
+          "select": [
+            [
+              {
+                "params": [
+                  "responseTime"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [
+                  "90"
+                ],
+                "type": "percentile"
+              }
+            ]
+          ],
+          "table": "jmresults",
+          "tableLoading": false,
+          "tags": [
+            {
+              "key": "requestName",
+              "operator": "=~",
+              "value": "/^$request$/"
+            }
+          ]
+        },
+        {
+          "alias": "90 perc",
+          "database": "default",
+          "dateLoading": false,
+          "dateTimeColDataType": "timestamp_sec",
+          "dateTimeType": "DATETIME",
+          "datetimeLoading": false,
+          "dsType": "influxdb",
+          "extrapolate": true,
+          "format": "time_series",
+          "formattedQuery": "SELECT percentile(\"responseTime\", 90) FROM \"requestsRaw\" WHERE  \"testName\" =~ /^$profile$/ AND \"runId\" =~ /^$runid$/ AND \"requestName\" =~ /^$request$/ AND $timeFilter GROUP BY time([[aggregation]]s) fill(null)",
+          "groupBy": [
+            {
+              "params": [
+                "$aggregation"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "interval": "[[agr]]s",
+          "intervalFactor": 1,
+          "measurement": "requestsRaw",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT\n    $timeSeries as t,\n    quantile(0.95)(average_time) as \"97perc\",\n    sample_label||'_LEFT' as \"sample_label\"\nFROM jmresults_statistic\nWHERE\n    $timeFilter\n    AND profile_name = '$LEFT_PROFILE'\n    and run_id = '$LEFT_RUN' and res_code='200'\n    \nGROUP BY t,sample_label\nORDER BY t,sample_label",
+          "rawQuery": "SELECT     (intDiv(toUInt32(timestamp_sec), 10) * 10) * 1000 as t,     quantile(0.95)(average_time) as \"97perc\",     sample_label||'_LEFT' as \"sample_label\" FROM jmresults_statistic WHERE     timestamp_sec BETWEEN toDateTime(1596539790) AND toDateTime(1596540150)     AND profile_name = 'TEST3'     and run_id = 'Run8' and res_code='200'      GROUP BY t,sample_label ORDER BY t,sample_label",
+          "refId": "I",
+          "resultFormat": "time_series",
+          "round": "0s",
+          "select": [
+            [
+              {
+                "params": [
+                  "responseTime"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [
+                  "90"
+                ],
+                "type": "percentile"
+              }
+            ]
+          ],
+          "table": "jmresults",
+          "tableLoading": false,
+          "tags": [
+            {
+              "key": "requestName",
+              "operator": "=~",
+              "value": "/^$request$/"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Response time Graf",
+      "tooltip": {
+        "msResolution": true,
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "ms",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "datasource": "ClickHouse",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "right",
+            "displayMode": "auto"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 250
+              },
+              {
+                "color": "red",
+                "value": 500
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Samples"
+            },
+            "properties": [
+              {
+                "id": "custom.displayMode",
+                "value": "auto"
+              },
+              {
+                "id": "unit",
+                "value": "none"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Right"
+            },
+            "properties": [
+              {
+                "id": "custom.displayMode"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "sample_label"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 180
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 18,
+        "w": 7,
+        "x": 0,
+        "y": 39
+      },
+      "id": 2,
+      "options": {
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "7.0.3",
+      "targets": [
+        {
+          "database": "default",
+          "dateColDataType": "",
+          "dateLoading": false,
+          "dateTimeColDataType": "timestamp_sec",
+          "dateTimeType": "DATETIME",
+          "datetimeLoading": false,
+          "extrapolate": true,
+          "format": "table",
+          "formattedQuery": "SELECT $timeSeries as t, count() FROM $table WHERE $timeFilter GROUP BY t ORDER BY t",
+          "hide": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "query": "SELECT     sample_label,sum(points_count) as \"Samples\",\r\nquantile(0.95)(average_time) as \"95%\"\r\nFROM jmresults_statistic \r\nWHERE\r\nprofile_name = '$LEFT_PROFILE'     \r\nand run_id = '$LEFT_RUN'    \r\nGROUP BY sample_label ORDER BY sample_label",
+          "rawQuery": "SELECT     sample_label,sum(points_count) as \"Samples\", quantile(0.95)(average_time) as \"95%\" FROM jmresults_statistic  WHERE profile_name = 'TEST3'      and run_id = 'Run3'     GROUP BY sample_label ORDER BY sample_label",
+          "refId": "A",
+          "round": "0s",
+          "table": "jmresults_statistic",
+          "tableLoading": false
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Left",
+      "transformations": [],
+      "type": "table"
+    },
+    {
+      "datasource": "ClickHouse",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "right",
+            "displayMode": "auto"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 250
+              },
+              {
+                "color": "red",
+                "value": 500
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Samples"
+            },
+            "properties": [
+              {
+                "id": "custom.displayMode",
+                "value": "auto"
+              },
+              {
+                "id": "unit",
+                "value": "none"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Right"
+            },
+            "properties": [
+              {
+                "id": "custom.displayMode"
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 18,
+        "w": 8,
+        "x": 7,
+        "y": 39
+      },
+      "id": 4,
+      "options": {
+        "showHeader": true
+      },
+      "pluginVersion": "7.0.3",
+      "targets": [
+        {
+          "database": "default",
+          "dateColDataType": "",
+          "dateLoading": false,
+          "dateTimeColDataType": "timestamp_sec",
+          "dateTimeType": "DATETIME",
+          "datetimeLoading": false,
+          "extrapolate": true,
+          "format": "table",
+          "formattedQuery": "SELECT $timeSeries as t, count() FROM $table WHERE $timeFilter GROUP BY t ORDER BY t",
+          "hide": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "query": "SELECT     sample_label,sum(points_count) as \"Samples\",\r\nquantile(0.95)(average_time) as \"95%\"\r\nFROM jmresults_statistic \r\nWHERE\r\nprofile_name = '$RIGHT_PROFILE'     \r\nand run_id = '$RIGHT_RUN'    \r\nGROUP BY sample_label ORDER BY sample_label",
+          "rawQuery": "SELECT     sample_label,sum(points_count) as \"Samples\", quantile(0.95)(average_time) as \"95%\" FROM jmresults_statistic  WHERE profile_name = 'TEST3'      and run_id = 'Run4'     GROUP BY sample_label ORDER BY sample_label",
+          "refId": "A",
+          "round": "0s",
+          "table": "jmresults_statistic",
+          "tableLoading": false
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Right",
+      "transformations": [],
+      "type": "table"
+    },
+    {
+      "datasource": "ClickHouse",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": "right",
+            "displayMode": "color-background"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 250
+              },
+              {
+                "color": "red",
+                "value": 500
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Left"
+            },
+            "properties": [
+              {
+                "id": "custom.displayMode",
+                "value": "auto"
+              },
+              {
+                "id": "custom.width",
+                "value": 99
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Right"
+            },
+            "properties": [
+              {
+                "id": "custom.displayMode"
+              },
+              {
+                "id": "custom.width",
+                "value": 155
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Label"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 240
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 18,
+        "w": 9,
+        "x": 15,
+        "y": 39
+      },
+      "id": 3,
+      "options": {
+        "showHeader": true,
+        "sortBy": []
+      },
+      "pluginVersion": "7.0.3",
+      "targets": [
+        {
+          "database": "default",
+          "dateColDataType": "",
+          "dateLoading": false,
+          "dateTimeColDataType": "timestamp_sec",
+          "dateTimeType": "DATETIME",
+          "datetimeLoading": false,
+          "extrapolate": true,
+          "format": "table",
+          "formattedQuery": "SELECT $timeSeries as t, count() FROM $table WHERE $timeFilter GROUP BY t ORDER BY t",
+          "hide": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "query": "select a.sample_label as \"Label\", a.\"97per\" as \"Left\",b.\"97per\" as \"Right\" from (\r\nSELECT     sample_label,\r\nquantile(0.95)(average_time) as \"97per\"\r\nFROM jmresults_statistic \r\nWHERE\r\nprofile_name = '$LEFT_PROFILE'     \r\nand run_id = '$LEFT_RUN'    \r\nGROUP BY sample_label ORDER BY sample_label) a, (\r\nSELECT     sample_label,\r\nquantile(0.95)(average_time) as \"97per\"\r\nFROM jmresults_statistic \r\nWHERE\r\nprofile_name = '$RIGHT_PROFILE'     \r\nand run_id = '$RIGHT_RUN'    \r\nGROUP BY sample_label ORDER BY sample_label) b where a.sample_label=b.sample_label order by \"Label\"",
+          "rawQuery": "select a.sample_label as \"Label\", a.\"97per\" as \"Left\",b.\"97per\" as \"Right\" from ( SELECT     sample_label, quantile(0.95)(average_time) as \"97per\" FROM jmresults_statistic  WHERE profile_name = 'TEST3'      and run_id = 'Run3'     GROUP BY sample_label ORDER BY sample_label) a, ( SELECT     sample_label, quantile(0.95)(average_time) as \"97per\" FROM jmresults_statistic  WHERE profile_name = 'TEST3'      and run_id = 'Run4'     GROUP BY sample_label ORDER BY sample_label) b where a.sample_label=b.sample_label order by \"Label\"",
+          "refId": "A",
+          "round": "0s",
+          "table": "jmresults_statistic",
+          "tableLoading": false
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Difference",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "DIFF",
+            "binary": {
+              "left": "Right",
+              "operator": "-",
+              "reducer": "sum",
+              "right": "Left"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        }
+      ],
+      "type": "table"
+    }
+  ],
+  "refresh": false,
+  "schemaVersion": 25,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "TEST3",
+          "value": "TEST3"
+        },
+        "datasource": "ClickHouse",
+        "definition": "SELECT DISTINCT profile_name FROM jmresults_statistic",
+        "hide": 0,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "name": "LEFT_PROFILE",
+        "options": [],
+        "query": "SELECT DISTINCT profile_name FROM jmresults_statistic",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "Run8",
+          "value": "Run8"
+        },
+        "datasource": "ClickHouse",
+        "definition": "SELECT DISTINCT run_id FROM jmresults_statistic where profile_name ='$LEFT_PROFILE'",
+        "hide": 0,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "name": "LEFT_RUN",
+        "options": [
+          {
+            "selected": false,
+            "text": "Run1",
+            "value": "Run1"
+          },
+          {
+            "selected": false,
+            "text": "Run2",
+            "value": "Run2"
+          },
+          {
+            "selected": false,
+            "text": "Run3",
+            "value": "Run3"
+          },
+          {
+            "selected": false,
+            "text": "Run4",
+            "value": "Run4"
+          },
+          {
+            "selected": false,
+            "text": "Run5",
+            "value": "Run5"
+          },
+          {
+            "selected": true,
+            "text": "Run8",
+            "value": "Run8"
+          }
+        ],
+        "query": "SELECT DISTINCT run_id FROM jmresults_statistic where profile_name ='$LEFT_PROFILE'",
+        "refresh": 0,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "TEST3",
+          "value": "TEST3"
+        },
+        "datasource": "ClickHouse",
+        "definition": "SELECT DISTINCT profile_name FROM jmresults_statistic",
+        "hide": 0,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "name": "RIGHT_PROFILE",
+        "options": [],
+        "query": "SELECT DISTINCT profile_name FROM jmresults_statistic",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "Run9",
+          "value": "Run9"
+        },
+        "datasource": "ClickHouse",
+        "definition": "SELECT DISTINCT run_id FROM jmresults_statistic where profile_name ='$RIGHT_PROFILE'",
+        "hide": 0,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "name": "RIGHT_RUN",
+        "options": [],
+        "query": "SELECT DISTINCT run_id FROM jmresults_statistic where profile_name ='$RIGHT_PROFILE'",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "jp@gc - Dummy Sampler4 + jp@gc - Dummy Sampler3 + jp@gc - Dummy Sampler5",
+          "value": [
+            "jp@gc - Dummy Sampler4",
+            "jp@gc - Dummy Sampler3",
+            "jp@gc - Dummy Sampler5"
+          ]
+        },
+        "datasource": "ClickHouse",
+        "definition": "SELECT DISTINCT sample_label FROM jmresults_statistic where profile_name ='$LEFT_PROFILE' and run_id='$LEFT_RUN'",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Sample",
+        "multi": true,
+        "name": "LEFT_SAMPLE",
+        "options": [],
+        "query": "SELECT DISTINCT sample_label FROM jmresults_statistic where profile_name ='$LEFT_PROFILE' and run_id='$LEFT_RUN'",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "10",
+          "value": "10"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "name": "agr",
+        "options": [
+          {
+            "selected": false,
+            "text": "1",
+            "value": "1"
+          },
+          {
+            "selected": true,
+            "text": "10",
+            "value": "10"
+          },
+          {
+            "selected": false,
+            "text": "60",
+            "value": "60"
+          },
+          {
+            "selected": false,
+            "text": "1800",
+            "value": "1800"
+          },
+          {
+            "selected": false,
+            "text": "3600",
+            "value": "3600"
+          }
+        ],
+        "query": "1,10,60,1800,3600",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "99",
+          "value": [
+            "99"
+          ]
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": null,
+        "multi": true,
+        "name": "percentline",
+        "options": [
+          {
+            "selected": true,
+            "text": "99",
+            "value": "99"
+          },
+          {
+            "selected": false,
+            "text": "95",
+            "value": "95"
+          },
+          {
+            "selected": false,
+            "text": "90",
+            "value": "90"
+          },
+          {
+            "selected": false,
+            "text": "85",
+            "value": "85"
+          },
+          {
+            "selected": false,
+            "text": "80",
+            "value": "80"
+          },
+          {
+            "selected": false,
+            "text": "70",
+            "value": "70"
+          },
+          {
+            "selected": false,
+            "text": "60",
+            "value": "60"
+          },
+          {
+            "selected": false,
+            "text": "50",
+            "value": "50"
+          },
+          {
+            "selected": false,
+            "text": "40",
+            "value": "40"
+          },
+          {
+            "selected": false,
+            "text": "30",
+            "value": "30"
+          },
+          {
+            "selected": false,
+            "text": "20",
+            "value": "20"
+          },
+          {
+            "selected": false,
+            "text": "10",
+            "value": "10"
+          }
+        ],
+        "query": "99,95,90,85,80,70,60,50,40,30,20,10",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
+      }
+    ]
+  },
+  "time": {
+    "from": "2020-08-04T11:13:32.695Z",
+    "to": "2020-08-04T11:25:28.899Z"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ]
+  },
+  "timezone": "",
+  "title": "Сравнение результатов НТ",
+  "uid": "2yAa1C4Gz",
+  "version": 22
+}
